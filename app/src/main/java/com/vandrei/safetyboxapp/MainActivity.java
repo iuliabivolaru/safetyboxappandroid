@@ -49,15 +49,13 @@ public class MainActivity extends AppCompatActivity {
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.range5m:
-                if (checked) dblevel = -65;
+                if (checked) dblevel = -76;
                     break;
             case R.id.range10m:
-                if (checked) dblevel = -90;
-                    // Ninjas rule
+                if (checked) dblevel = -86;
                     break;
             case R.id.range30m:
-                if (checked) dblevel = -120;
-                // Ninjas rule
+                if (checked) dblevel = -100;
                 break;
             default:
                 dblevel = -40;
@@ -69,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MonitorDevices.class);
         Bundle bundle = new Bundle();
         intent.putExtra("registeredDevice", "00:00:00:11:11:11");
+        intent.putExtra("rangeDb",dblevel);
         startActivity(intent);
 
     }

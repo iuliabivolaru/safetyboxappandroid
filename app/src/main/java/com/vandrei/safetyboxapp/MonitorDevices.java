@@ -1,6 +1,7 @@
 package com.vandrei.safetyboxapp;
 
 import android.Manifest;
+import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.BluetoothLeScanner;
@@ -8,7 +9,10 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -28,6 +32,7 @@ public class MonitorDevices extends AppCompatActivity {
     private HashMap<String, Device> scanResults;
 
     String registeredDevice;
+    int dblevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class MonitorDevices extends AppCompatActivity {
 
         Intent intent = getIntent();
         registeredDevice = intent.getStringExtra("registeredDevice");
+        dblevel = intent.getIntExtra("rangeDb", 20);
 
         scanResults = new HashMap<>();
 
@@ -58,8 +64,14 @@ public class MonitorDevices extends AppCompatActivity {
             @Override
             public void onScanResult(int callbackType, ScanResult result) {
                 super.onScanResult(callbackType, result);
-                Device device = new Device(result.getScanRecord().getDeviceName(), result.getRssi(), result.getDevice().getAddress());
-                if(device.getName()!=null && device.getUuid().equals(registeredDevice)) scanResults.put(result.getDevice().getAddress(),device);
+                if(scanResults.size()==0){
+                    Device device = new Device(result.getScanRecord().getDeviceName(), result.getRssi(), result.getDevice().getAddress());
+                    if(device.getName()!=null && device.getUuid().equals(registeredDevice)) scanResults.put(result.getDevice().getAddress(),device);
+
+                }else if (result)
+
+
+
                 displayMonitoredDevices();
 
             }
@@ -72,13 +84,50 @@ public class MonitorDevices extends AppCompatActivity {
     private void displayMonitoredDevices() {
         ArrayList<Device> devices = new ArrayList<>();
 
+
+
         Device ourDevice = scanResults.get(registeredDevice);
-        if(ourDevice!=null) devices.add(ourDevice);
+        if(ourDevice!=null) {
+            checkIsNear(ourDevice);
+            devices.add(ourDevice);
+        }
         DeviceListAdapter adapter = new DeviceListAdapter(this,android.R.layout.simple_list_item_1, devices);
 
         adapter.setShowDistance(true);
 
         deviceList.setAdapter(adapter);
 
+    }
+
+    private void checkIsNear(Device device) {
+        if(device.getDistanceDb() < dblevel) {
+            Device ourDevice = scanResults.get(registeredDevice);
+            if(ourDevice.getNotificationCounter()>10) {
+                raiseNotification();
+                ourDevice.resetNotificationCounter();
+            } else{
+                ourDevice.setNotificationCounter(ourDevice.getNotificationCounter()+1);
+            }
+            scanResults.put(registeredDevice, ourDevice);
+
+        }
+
+    }
+
+    private void raiseNotification() {
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.logo)
+                        .setContentTitle("Asset alert")
+                        .setContentText("Your Wims asset is too far")
+                        .setSound(alarmSound);
+
+
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(99, mBuilder.build());
     }
 }
