@@ -74,7 +74,10 @@ public class MonitorDevices extends AppCompatActivity {
 
         Device ourDevice = scanResults.get(registeredDevice);
         if(ourDevice!=null) devices.add(ourDevice);
-        ArrayAdapter adapter = new DeviceListAdapter(this,android.R.layout.simple_list_item_1, devices);
+        DeviceListAdapter adapter = new DeviceListAdapter(this,android.R.layout.simple_list_item_1, devices);
+
+        adapter.setShowDistance(true);
+
         deviceList.setAdapter(adapter);
 
     }

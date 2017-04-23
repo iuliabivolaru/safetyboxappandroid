@@ -62,9 +62,9 @@ public class DeviceListAdapter extends ArrayAdapter<Device> {
         textView.setText(device.getName());
 
         if(showDistance){
-            TextView v.findViewById(R.id.distance);
-
-
+            TextView distance = (TextView) v.findViewById(R.id.distance);
+            distance.setVisibility(View.VISIBLE);
+            distance.setText(device.getDistanceDb()+"db");
         }
 
         return v;

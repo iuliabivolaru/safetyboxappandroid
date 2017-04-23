@@ -19,4 +19,40 @@
         android:id="@+id/listDevices"/>
 
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="ltr"
+        android:orientation="horizontal"
+        android:id="@+id/rangeSelector">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5m"
+            android:id="@+id/range5m"
+            android:onClick="onRadioButtonClicked"
+
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10m"
+            android:id="@+id/range10m"
+            android:onClick="onRadioButtonClicked"
+
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30m"
+            android:id="@+id/range30m"
+            android:onClick="onRadioButtonClicked"
+
+            />
+
+
+    </RadioGroup>
+
+
 </LinearLayout>

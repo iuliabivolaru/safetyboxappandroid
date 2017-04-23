@@ -8,6 +8,7 @@ import android.support.v7.widget.ButtonBarLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int SEARCH_DEVICES_INTENT = 635;
 
     private ScanResult scanResult;
+    private int dblevel = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.range5m:
+                if (checked) dblevel = -65;
+                    break;
+            case R.id.range10m:
+                if (checked) dblevel = -90;
+                    // Ninjas rule
+                    break;
+            case R.id.range30m:
+                if (checked) dblevel = -120;
+                // Ninjas rule
+                break;
+            default:
+                dblevel = -40;
+                break;
+        }
     }
 
     private void monitorDevices() {

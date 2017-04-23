@@ -28,8 +28,13 @@
         </activity>
         <activity
             android:name=".SearchDevicesActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MonitorDevices"></activity>
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+        <activity android:name=".MonitorDevices"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

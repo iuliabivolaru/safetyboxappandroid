@@ -30,6 +30,10 @@ public class Device implements Serializable {
         return uuid;
     }
 
+    public int getDistanceDb() {
+        return distanceDb;
+    }
+
     public String getName() {
         return name;
     }
