@@ -39,6 +39,8 @@ public class MonitorDevices extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitor_devices);
 
+        setTitle("Monitoring");
+
         Intent intent = getIntent();
         registeredDevice = intent.getStringExtra("registeredDevice");
         dblevel = intent.getIntExtra("rangeDb", 20);

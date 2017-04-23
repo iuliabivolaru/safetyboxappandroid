@@ -41,6 +41,8 @@ public class SearchDevicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_devices);
 
+        setTitle("Add an asset");
+
         scanResults = new HashMap<>();
 
         deviceName = (TextView) findViewById(R.id.deviceName);

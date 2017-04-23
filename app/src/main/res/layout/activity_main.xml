@@ -7,46 +7,62 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context="com.vandrei.safetyboxapp.MainActivity">
+
+
     <ImageView
+        android:layout_marginTop="60dp"
         android:padding="10dp"
         android:id="@+id/imageView1"
         android:layout_width="180dp"
         android:layout_height="220dp"
         android:src="@drawable/logo" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal"
+        android:padding="10sp">
+
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Add device"
             android:id="@+id/addDevice"
-            android:layout_weight="1"
-            />
-        <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Monitor Devices"
-            android:id="@+id/listDevices"
+            android:layout_margin="20dp"
             android:layout_weight="1"
-            />
+            android:background="@drawable/button_background"
+            android:elevation="4dp"
+            android:text="Add device"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/listDevices"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:elevation="4dp"
+            android:text="Monitor \nDevices"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
 
-
     <RadioGroup
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layoutDirection="ltr"
         android:orientation="horizontal"
-        android:id="@+id/rangeSelector">
+        android:id="@+id/rangeSelector"
+        android:visibility="gone">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5m"
+
+
             android:id="@+id/range5m"
             android:onClick="onRadioButtonClicked"
 

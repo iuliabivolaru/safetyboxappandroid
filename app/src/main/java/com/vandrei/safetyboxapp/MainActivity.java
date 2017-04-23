@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle("WIMS");
+
         Button search = (Button) findViewById(R.id.addDevice);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        dblevel = -70;
 
     }
 
