@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 if (checked) dblevel = -63;
                     break;
             case R.id.range10m:
-                if (checked) dblevel = -86;
+                if (checked) dblevel = -82;
                     break;
             case R.id.range30m:
                 if (checked) dblevel = -100;

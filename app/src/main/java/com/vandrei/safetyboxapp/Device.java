@@ -11,6 +11,15 @@ public class Device implements Serializable {
     private String name,uuid;
     private int distanceDb;
     private int notificationCounter;
+    private boolean notifiedFlag = false;
+
+    public boolean isNotifiedFlag() {
+        return notifiedFlag;
+    }
+
+    public void setNotifiedFlag(boolean notifiedFlag) {
+        this.notifiedFlag = notifiedFlag;
+    }
 
     public Device(String name, int distanceDb, String uuid){
         this.name = name;

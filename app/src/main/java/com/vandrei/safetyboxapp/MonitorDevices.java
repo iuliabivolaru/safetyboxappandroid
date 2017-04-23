@@ -104,7 +104,8 @@ public class MonitorDevices extends AppCompatActivity {
         if(device.getDistanceDb() < dblevel) {
             Device ourDevice = scanResults.get(registeredDevice);
             if(ourDevice.getNotificationCounter()>15) {
-                raiseNotification();
+                if(!ourDevice.isNotifiedFlag())raiseNotification();
+                ourDevice.setNotifiedFlag(true);
                 ourDevice.resetNotificationCounter();
             } else{
                 ourDevice.setNotificationCounter(ourDevice.getNotificationCounter()+1);
