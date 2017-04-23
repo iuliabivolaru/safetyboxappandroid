@@ -61,11 +61,11 @@ public class DeviceListAdapter extends ArrayAdapter<Device> {
         TextView textView = (TextView) v.findViewById(R.id.deviceName);
         textView.setText(device.getName());
 
-        if(showDistance){
-            TextView distance = (TextView) v.findViewById(R.id.distance);
-            distance.setVisibility(View.VISIBLE);
-            distance.setText(device.getDistanceDb()+"db");
-        }
+//        if(showDistance){
+//            TextView distance = (TextView) v.findViewById(R.id.distance);
+//            distance.setVisibility(View.VISIBLE);
+////            distance.setText(device.getDistanceDb()+"db");
+//        }
 
         return v;
 

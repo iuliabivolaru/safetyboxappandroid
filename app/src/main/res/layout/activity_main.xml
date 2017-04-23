@@ -6,17 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.vandrei.safetyboxapp.MainActivity">
-
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo.png" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add device"
-        android:id="@+id/addDevice"/>
+        android:id="@+id/addDevice"
+        android:width="300dp"
+        android:layout_gravity="center"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List Devices"
-        android:id="@+id/listDevices"/>
+        android:id="@+id/listDevices"
+        android:width="300dp"
+        android:layout_gravity="center"/>
 
 
     <RadioGroup
