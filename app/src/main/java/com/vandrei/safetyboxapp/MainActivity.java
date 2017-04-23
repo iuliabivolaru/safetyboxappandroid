@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.range5m:
-                if (checked) dblevel = -76;
+                if (checked) dblevel = -63;
                     break;
             case R.id.range10m:
                 if (checked) dblevel = -86;

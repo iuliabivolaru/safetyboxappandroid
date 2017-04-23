@@ -47,6 +47,10 @@ public class Device implements Serializable {
         return distanceDb;
     }
 
+    public void setDistanceDb(int distanceDb) {
+        this.distanceDb = distanceDb;
+    }
+
     public String getName() {
         return name;
     }

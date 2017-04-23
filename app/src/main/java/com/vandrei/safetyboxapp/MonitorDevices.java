@@ -68,7 +68,10 @@ public class MonitorDevices extends AppCompatActivity {
                     Device device = new Device(result.getScanRecord().getDeviceName(), result.getRssi(), result.getDevice().getAddress());
                     if(device.getName()!=null && device.getUuid().equals(registeredDevice)) scanResults.put(result.getDevice().getAddress(),device);
 
-                }else if (result)
+                }else if (result.getDevice().getAddress().equals(registeredDevice)) {
+                    Device device = scanResults.get(registeredDevice);
+                    if(device!=null) device.setDistanceDb(result.getRssi());
+                }
 
 
 
@@ -83,8 +86,6 @@ public class MonitorDevices extends AppCompatActivity {
 
     private void displayMonitoredDevices() {
         ArrayList<Device> devices = new ArrayList<>();
-
-
 
         Device ourDevice = scanResults.get(registeredDevice);
         if(ourDevice!=null) {
@@ -102,7 +103,7 @@ public class MonitorDevices extends AppCompatActivity {
     private void checkIsNear(Device device) {
         if(device.getDistanceDb() < dblevel) {
             Device ourDevice = scanResults.get(registeredDevice);
-            if(ourDevice.getNotificationCounter()>10) {
+            if(ourDevice.getNotificationCounter()>15) {
                 raiseNotification();
                 ourDevice.resetNotificationCounter();
             } else{
